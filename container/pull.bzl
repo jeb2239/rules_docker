@@ -87,7 +87,7 @@ container_pull = repository_rule(
         "tag": attr.string(default = "latest"),
         "_puller": attr.label(
             executable = True,
-            default = Label("@puller//file:puller.par"),
+            default = Label("//containerregistry:puller"),
             cfg = "host",
         ),
     },

@@ -38,29 +38,21 @@ def repositories():
   excludes = native.existing_rules().keys()
 
   if "puller" not in excludes:
-    native.http_file(
-      name = "puller",
-      url = ("https://storage.googleapis.com/containerregistry-releases/" +
-             CONTAINERREGISTRY_RELEASE + "/puller.par"),
-      sha256 = "42309ba47bb28d1e1b81ef72789dcca396095e191d4f0e49e2e23c297edd27fb",
-      executable = True,
-    )
+    print("hey")
+#    native.py_binary(
+#      name = "puller",
+#      url = ("https://storage.googleapis.com/containerregistry-releases/" +
+#             CONTAINERREGISTRY_RELEASE + "/puller.par"),
+#      sha256 = "42309ba47bb28d1e1b81ef72789dcca396095e191d4f0e49e2e23c297edd27fb",
+#      executable = True,
+#    )
 
   if "importer" not in excludes:
-    native.http_file(
-      name = "importer",
-      url = ("https://storage.googleapis.com/containerregistry-releases/" +
-             CONTAINERREGISTRY_RELEASE + "/importer.par"),
-      sha256 = "0a2490584c96bcf961242364d961859b94926182f20a217754730e7097ea6cde",
-      executable = True,
-    )
+    print("importer")
+
 
   if "containerregistry" not in excludes:
-    native.git_repository(
-      name = "containerregistry",
-      remote = "https://github.com/google/containerregistry.git",
-      tag = CONTAINERREGISTRY_RELEASE,
-    )
+    print("Containerregistry")
 
   # TODO(mattmoor): Remove all of this (copied from google/containerregistry)
   # once transitive workspace instantiation lands.
@@ -145,11 +137,12 @@ py_library(
 
   # For packaging python tools.
   if "subpar" not in excludes:
-    native.git_repository(
-      name = "subpar",
-      remote = "https://github.com/google/subpar",
-      commit = "7e12cc130eb8f09c8cb02c3585a91a4043753c56",
-    )
+    print("subpar")
+#    native.git_repository(
+#      name = "subpar",
+#      remote = "https://github.com/google/subpar",
+#      commit = "7e12cc130eb8f09c8cb02c3585a91a4043753c56",
+#    )
 
   if "structure_test" not in excludes:
     native.git_repository(

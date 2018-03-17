@@ -139,13 +139,13 @@ TEST_DATA = [
     "//testdata:stamped_bundle_test",
 ]
 
-py_test(
-    name = "image_test",
-    size = "medium",
-    srcs = ["image_test.py"],
-    data = TEST_DATA,
-    deps = ["@containerregistry"],
-)
+#py_test(
+#    name = "image_test",
+#    size = "medium",
+#    srcs = ["image_test.py"],
+#    data = TEST_DATA,
+#    deps = ["//containerregistry"],
+#)
 
 skylark_library(
     name = "bundle",

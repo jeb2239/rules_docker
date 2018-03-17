@@ -1,4 +1,6 @@
-# Copyright 2017 The Bazel Authors. All rights reserved.
+#!/bin/bash
+#
+# Copyright 2017 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,23 +13,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-workspace(name = "io_bazel_rules_docker")
 
-load(
-    "//container:container.bzl",
-    "container_pull",
-    "container_load",
-    container_repositories = "repositories",
-    )
+[ -z "$TEST_SRCDIR" ] && { echo "TEST_SRCDIR not set!" >&2; exit 1; }
 
-# Consumers shouldn't need to do this themselves once WORKSPACE is
-# instantiated recursively.
-container_repositories()
+# Load the unit-testing framework
+source "${TEST_SRCDIR}/io_bazel/src/test/shell/unittest.bash" \
+  || { echo "Failed to source unittest.bash" >&2; exit 1; }
 
-# These are for testing.
+set_up() {
+  mkdir -p $TEST_TMPDIR/workspace
+  cd $TEST_TMPDIR/workspace
+  touch $TEST_TMPDIR/workspace/WORKSPACE
+}
 
-container_load(
-    name = "pause_tar",
-    file = "//testdata:pause.tar",
-)
-
+tear_down() {
+  rm -fr $TEST_TMPDIR/workspace/*
+}

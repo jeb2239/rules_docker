@@ -1,4 +1,4 @@
-# Copyright 2017 The Bazel Authors. All rights reserved.
+# Copyright 2017 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,23 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-workspace(name = "io_bazel_rules_docker")
 
-load(
-    "//container:container.bzl",
-    "container_pull",
-    "container_load",
-    container_repositories = "repositories",
-    )
-
-# Consumers shouldn't need to do this themselves once WORKSPACE is
-# instantiated recursively.
-container_repositories()
-
-# These are for testing.
-
-container_load(
-    name = "pause_tar",
-    file = "//testdata:pause.tar",
-)
+import sys
+x=sys.modules['containerregistry']
+  
 
